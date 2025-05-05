@@ -1,0 +1,13 @@
+{
+  "name": "playwright-automation-template",
+  "version": "1.0.0",
+  "description": "Minimal Playwright + TypeScript test automation starter template",
+  "scripts": {
+    "test": "npx playwright test"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.42.1",
+    "@types/node": "^22.15.3",
+    "typescript": "^5.3.3"
+  }
+}
