@@ -32,3 +32,4 @@ jobs:
           context: .
           push: true
           tags: ghcr.io/zerodayd/playwright-template:latest
+          provenance: false
