@@ -9,6 +9,6 @@ test.describe('navigation', () => {
         await expect(page).toHaveURL('https://playwright.dev/');
         await page.getByRole('link', { name: 'Docs' }).click();
         await expect(page).toHaveURL(/.*docs/);
-        await expect(page.locator('h1')).toContainText('Installation');
+        await expect(page.locator('h1')).toContainText('Woooooooooooow');
     });
 });
