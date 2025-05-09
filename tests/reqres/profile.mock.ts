@@ -1,5 +1,5 @@
-import { Page } from '@playwright/test';
-import {fulfillJson} from "../../utils/api-mock.helper";
+import {Page} from '@playwright/test';
+import {fulfillJson} from '../../utils/api-mock.helper';
 
 
 export async function mockUser2(page: Page) {
