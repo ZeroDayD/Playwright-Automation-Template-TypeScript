@@ -2,11 +2,11 @@ name: Lint
 
 on:
   pull_request:
-    paths:
-      - '**/*.ts'
-      - 'eslint.config.mjs'
-      - 'package.json'
-
+    paths-ignore:
+      - '**/*.yml'
+      - '**/*.yaml'
+  workflow_dispatch:
+  
 jobs:
   lint:
     runs-on: ubuntu-latest
