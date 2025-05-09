@@ -38,8 +38,11 @@ jobs:
           if [ "${{ github.event_name }}" = "pull_request" ]; then
             RUN_STATUS=$(gh run list --workflow="Playwright Tests" --json status,conclusion,event -L 5 | jq -r \
               '[.[] | select(.event=="pull_request")][0].conclusion')
+
             if [ "$RUN_STATUS" = "success" ]; then
               exit 0
+            elif [ -z "$RUN_STATUS" ]; then
+              echo "No Playwright Tests run found. Assuming not yet run."
             fi
           fi
 
