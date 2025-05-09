@@ -1,4 +1,4 @@
-name: Deployment
+name: Deploy
 
 on:
   pull_request:
@@ -12,24 +12,22 @@ jobs:
       !contains(github.event.pull_request.labels.*.name, 'no-block')
     runs-on: ubuntu-latest
     outputs:
-      DEPLOY_ALLOWED: true
+      proceed: true
     steps:
-      - run: echo "Merge allowed, proceeding to deploy..."
+      - run: echo "Merge allowed — continuing to approval"
 
-  approve-production:
+  approve:
     needs: check-deploy
-    if: needs.check-deploy.outputs.DEPLOY_ALLOWED == 'true'
+    if: needs.check-deploy.outputs.proceed == 'true'
     runs-on: ubuntu-latest
     environment:
       name: production
     steps:
-      - name: Await approval to deploy
-        run: echo "Deployment approved"
+      - run: echo "Manual approval granted"
 
   deploy:
-    needs: approve-production
-    if: success()
+    needs: approve
     runs-on: ubuntu-latest
     steps:
-      - name: Fake deploy step
-        run: echo "🚀 Deploying application..."
+      - name: Deploy
+        run: echo "Deploying to production..."
