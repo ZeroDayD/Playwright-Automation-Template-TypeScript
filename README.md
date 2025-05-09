@@ -1,12 +1,15 @@
-# Playwright Automation Template
+# 🎭 Playwright Automation Template
 
-This is a minimal Playwright + TypeScript automation starter with:
+A minimal and extensible starter for Playwright + TypeScript with:
 
-- UI and API tests
-- Mocking example
-- GitHub Actions integration
+- ✅ UI and API tests
+- ✅ Mocking (with route.fulfill)
+- ✅ PageObject structure
+- ✅ GitHub Actions integration
 
-## Getting Started
+---
+
+## 🚀 Getting Started
 
 ```bash
 npm install
@@ -14,12 +17,50 @@ npx playwright install
 npx playwright test
 ```
 
-## Folder structure
+---
+
+## 📁 Folder Structure
+
 ```
-/tests        → test specs
-/utils        → helpers and mocks
+/tests
+  └── reqres/
+      ├── profile.spec.ts       # E2E test using mock + PageObject
+      ├── profile.page.ts       # PageObject abstraction
+      └── profile.mock.ts       # API mock for reqres.in
+
+/utils
+  └── apiMockHelper.ts         # reusable mock fulfillment helper
 ```
 
-## Run in CI
+---
 
-GitHub Actions config is included in `.github/workflows/test.yml`
+## 🧪 Example Test
+
+```ts
+await page.route('**/api/users/2', async route => {
+  await route.fulfill({ body: JSON.stringify({ ... }) });
+});
+```
+
+```ts
+await page.setContent('<script>fetch(...) → render to DOM</script>');
+```
+
+---
+
+## 🤖 Run in CI
+
+GitHub Actions config is included in:
+
+```
+.github/workflows/test.yml
+```
+
+It runs Playwright tests automatically on pull requests or pushes to `main`.
+
+---
+
+## 💡 Tip
+
+Use this repo as a **template** to quickly scaffold new automation projects:  
+→ Click **"Use this template"** on GitHub.
