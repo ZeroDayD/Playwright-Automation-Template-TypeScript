@@ -2,11 +2,8 @@ name: Lint
 
 on:
   pull_request:
-    paths:
-      - '**/*.ts'
-      - 'eslint.config.mjs'
-      - 'package.json'
-
+  workflow_dispatch:
+  
 jobs:
   lint:
     runs-on: ubuntu-latest
