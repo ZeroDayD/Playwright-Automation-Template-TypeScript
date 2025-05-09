@@ -6,7 +6,6 @@ on:
       - '**/*.ts'
       - 'eslint.config.mjs'
       - 'package.json'
-  workflow_dispatch:
 
 jobs:
   lint:
