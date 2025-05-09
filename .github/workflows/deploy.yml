@@ -1,22 +1,35 @@
-name: Deploy to Production
+name: Deployment
 
 on:
-  workflow_run:
-    workflows: ["Playwright Tests"]
-    types:
-      - completed
+  pull_request:
+    types: [closed]
+    branches: [master]
 
 jobs:
-  deploy:
+  check-deploy:
     if: >
-      github.event.workflow_run.conclusion == 'success' &&
-      github.event.workflow_run.head_branch == 'master'
+      github.event.pull_request.merged == true &&
+      !contains(github.event.pull_request.labels.*.name, 'no-block')
+    runs-on: ubuntu-latest
+    outputs:
+      DEPLOY_ALLOWED: true
+    steps:
+      - run: echo "Merge allowed, proceeding to deploy..."
+
+  approve-production:
+    needs: check-deploy
+    if: needs.check-deploy.outputs.DEPLOY_ALLOWED == 'true'
     runs-on: ubuntu-latest
     environment:
       name: production
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
+      - name: Await approval to deploy
+        run: echo "Deployment approved"
 
-      - name: Deploying to production...
-        run: echo "🚀 Production deployment triggered and approved!"
+  deploy:
+    needs: approve-production
+    if: success()
+    runs-on: ubuntu-latest
+    steps:
+      - name: Fake deploy step
+        run: echo "🚀 Deploying application..."
