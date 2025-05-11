@@ -64,3 +64,5 @@ It runs Playwright tests automatically on pull requests or pushes to `main`.
 
 Use this repo as a **template** to quickly scaffold new automation projects:  
 → Click **"Use this template"** on GitHub.
+
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=ZeroDayD_playwright-automation&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=ZeroDayD_playwright-automation)
