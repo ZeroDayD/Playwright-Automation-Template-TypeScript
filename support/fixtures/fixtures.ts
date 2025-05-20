@@ -1,6 +1,6 @@
 import {test as base} from '@playwright/test';
-import {HomePage} from "../pages/home.page";
-import {DocPage} from "../pages/doc.page";
+import {HomePage} from '../pages/home.page';
+import {DocPage} from '../pages/doc.page';
 
 
 type Fixtures = {

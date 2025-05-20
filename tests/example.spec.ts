@@ -1,9 +1,8 @@
-import {expect} from '@playwright/test';
-import {test} from "../support/fixtures/fixtures";
+import {test} from '../support/fixtures/fixtures';
 
 test.describe('navigation', () => {
     test.beforeEach(async ({homePage}) => {
-        await homePage.open()
+        await homePage.open();
     });
 
     test('main navigation', async ({homePage, docPage}) => {

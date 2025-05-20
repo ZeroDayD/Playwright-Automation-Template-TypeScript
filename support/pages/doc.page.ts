@@ -1,5 +1,5 @@
-import {BasePage} from "./base.page";
-import {expect, Page} from "@playwright/test";
+import {BasePage} from './base.page';
+import {expect, Page} from '@playwright/test';
 
 export class DocPage extends BasePage {
     public static readonly url = '/docs/intro';
