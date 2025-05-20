@@ -34,3 +34,13 @@ jobs:
           name: playwright-report
           path: playwright-report/
           retention-days: 30
+
+      - name: Ensure .nojekyll exists
+        run: touch playwright-report/.nojekyll
+
+      - name: Deploy report to GitHub Pages
+        if: github.event_name == 'push' && github.ref == 'refs/heads/master'
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GHCR_PAT }}
+          publish_dir: ./playwright-report
