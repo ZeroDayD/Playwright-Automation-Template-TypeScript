@@ -7,16 +7,14 @@ on:
       - completed
 
 jobs:
-  deploy-pages:
+  deploy:
     if: >
       github.event.workflow_run.conclusion == 'success' &&
       github.event.workflow_run.head_branch == 'master'
     runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
 
-      - name: Download Playwright report artifact
+    steps:
+      - name: Download artifact
         uses: actions/download-artifact@v4
         with:
           name: playwright-report
@@ -25,8 +23,8 @@ jobs:
       - name: Ensure .nojekyll exists
         run: touch playwright-report/.nojekyll
 
-      - name: Deploy report to GitHub Pages
+      - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GHCR_PAT }}
-          publish_dir: ./playwright-report
+          publish_dir: playwright-report
