@@ -4,6 +4,7 @@
   "description": "Minimal Playwright + TypeScript test automation starter template",
   "scripts": {
     "lint": "eslint . --ext .ts",
+    "test:ui": "playwright test --ui",
     "test": "npx playwright test"
   },
   "devDependencies": {
