@@ -1,14 +1,14 @@
-import { test, expect } from '@playwright/test';
+import {test} from '../support/fixtures/fixtures';
 
 test.describe('navigation', () => {
-    test.beforeEach(async ({ page }) => {
-        await page.goto('/');
+    test.beforeEach(async ({homePage}) => {
+        await homePage.open();
     });
 
-    test('main navigation', async ({ page }) => {
-        await expect(page).toHaveURL('https://playwright.dev/');
-        await page.getByRole('link', { name: 'Docs' }).click();
-        await expect(page).toHaveURL(/.*docs/);
-        await expect(page.locator('h1')).toContainText('Installation');
+    test('main navigation', async ({homePage, docPage}) => {
+        await homePage.assertIsHome();
+        await homePage.clickDocLink();
+        await docPage.assertDocsOpened();
+        await docPage.assertHeaderText('Installation');
     });
 });
